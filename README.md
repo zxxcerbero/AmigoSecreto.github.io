@@ -16,7 +16,7 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 
 ## 🖼️ Vista Previa
 
-![Vista previa](./assets/amigo-secreto.png)
+![Vista previa](./img/amigo-secreto.png)
 
 ---
 
