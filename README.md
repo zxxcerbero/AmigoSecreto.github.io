@@ -16,7 +16,7 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 
 ## 🖼️ Vista Previa
 
-![Vista previa(/img/captura1-mobile.jpg)
+![Vista previa](./img/captura1-mobile.jpg)
 
 ---
 
