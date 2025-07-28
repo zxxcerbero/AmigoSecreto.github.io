@@ -1,82 +1,80 @@
 <template>
-  <section class="section is-mobile">
-    
-      <!-- Encabezado -->
-      <div class="has-text-centered mb-6">
-        <h1 class="title is-2">🎁 Amigo Secreto</h1>
-        <img
-          src="@/assets/amigo-secreto.png"
-          alt="Imagen amigo secreto"
-          style="max-width: 180px"
-        />
-      </div>
+  <section class="section is-mobile is-fullheight">
+    <!-- Encabezado -->
+    <div class="has-text-centered mb-6">
+      <h1 class="title is-2">🎁 Amigo Secreto</h1>
+      <img
+        src="@/assets/amigo-secreto.png"
+        alt="Imagen amigo secreto"
+        style="max-width: 280px" />
+    </div>
     <div class="container columns">
       <div class="is-justify-content-space-between">
-      <!-- Formulario para ingresar nombres -->
-      <div class="box column">
-        <h2 class="subtitle is-4 has-text-weight-semibold">👥 Agregar Amigos</h2>
+        <!-- Formulario para ingresar nombres -->
+        <div class="box column">
+          <h2 class="subtitle is-4 has-text-weight-semibold">
+            👥 Agregar Amigos
+          </h2>
 
-        <div class="field has-addons">
-          <div class="control is-expanded has-icons-left">
-            <input
-              v-model="nuevoAmigo"
-              class="input is-warning"
-              type="text"
-              placeholder="Nombre del amigo"
-              @keyup.enter="agregarAmigo"
-            />
-            <span class="icon is-left">
-              <i class="fas fa-user"></i>
-            </span>
+          <div class="field has-addons">
+            <div class="control is-expanded has-icons-left">
+              <input
+                v-model="nuevoAmigo"
+                class="input is-warning"
+                type="text"
+                placeholder="Nombre del amigo"
+                @keyup.enter="agregarAmigo" />
+              <span class="icon is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <div class="control">
+              <button class="button is-warning" @click="agregarAmigo">
+                Añadir
+              </button>
+            </div>
           </div>
-          <div class="control">
-            <button class="button is-warning" @click="agregarAmigo">
-              Añadir
-            </button>
+
+          <!-- Lista de amigos -->
+          <div class="column mt-4" v-if="amigos.length">
+            <p class="has-text-weight-semibold mb-2">📋 Lista de amigos:</p>
+            <ul>
+              <li v-for="(amigo, index) in amigos" :key="index">
+                {{ index + 1 }}. {{ amigo }}
+              </li>
+            </ul>
           </div>
         </div>
+        <!-- Animación de carga -->
+        <div class="has-text-centered my-4" v-if="sorteando">
+          <span class="loader is-loading is-large"></span>
+          <p class="mt-3 has-text-weight-semibold is-italic">
+            Realizando sorteo, espera un momento...
+          </p>
+        </div>
 
-        <!-- Lista de amigos -->
-        <div class="column mt-4" v-if="amigos.length">
-          <p class="has-text-weight-semibold mb-2">📋 Lista de amigos:</p>
+        <!-- Resultados -->
+        <div class="box is-primary" v-if="resultado.length && !sorteando">
+          <p class="title is-5">🎉 Resultados del sorteo:</p>
           <ul>
-            <li v-for="(amigo, index) in amigos" :key="index">
-              {{ index + 1 }}. {{ amigo }}
+            <li v-for="(ganador, index) in resultado" :key="index">
+              😎 ¡El Amigo Secreto es <strong>{{ ganador }}</strong
+              >!
             </li>
           </ul>
         </div>
       </div>
-      <!-- Animación de carga -->
-      <div class="has-text-centered my-4" v-if="sorteando">
-        <span class="loader is-loading is-large"></span>
-        <p class="mt-3 has-text-weight-semibold is-italic">Realizando sorteo, espera un momento...</p>
-      </div>
-
-      <!-- Resultados -->
-      <div class="box is-primary" v-if="resultado.length && !sorteando">
-        <p class="title is-5">🎉 Resultados del sorteo:</p>
-        <ul>
-          <li v-for="(ganador, index) in resultado" :key="index">
-            😎 ¡El Amigo Secreto es <strong>{{ ganador }}</strong>!
-          </li>
-        </ul>
-      </div>
-      </div>
     </div>
     <!-- Botón para sortear -->
-      <div class="has-text-centered my-5">
-        <button
-          class="button is-success is-large"
-          @click="sortearAmigo"
-          :disabled="amigos.length < 2 || sorteando"
-        >
-          <span class="icon">
-            <i class="fas fa-random"></i>
-          </span>
-          <span v-if="!sorteando">Sortear Amigo Secreto</span>
-          <span v-else>Cargando...</span>
-        </button>
-      </div>
+    <div class="has-text-centered mt-4">
+      <button
+        class="button is-success is-large"
+        @click="sortearAmigo"
+        :disabled="amigos.length < 2 || sorteando">
+        <span v-if="!sorteando">Sortear Amigo Secreto</span>
+        <span v-else>Cargando...</span>
+      </button>
+    </div>
   </section>
 </template>
 
