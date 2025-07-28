@@ -1,37 +1,33 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es_ES">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎁 Amigo Secreto</title>
-
-  <!-- Bulma CDN -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amigo secreto</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-
-  <!-- Font Awesome para íconos -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-  <!-- Estilos opcionales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    li::before {
-      content: "🎁 ";
-      margin-right: 6px;
-    }
+    /* Custom loader styles for Bulma */
     .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #00d1b2;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
       display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 3px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 3px solid #3498db; /* Blue color for the spinner */
+      animation: spin 1s linear infinite;
     }
+
+    .loader.is-large {
+      width: 80px;
+      height: 80px;
+      border-width: 5px;
+    }
+
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -40,14 +36,17 @@
     <section class="section is-mobile is-fullheight">
       <div class="has-text-centered mb-6">
         <h1 class="title is-2">🎁 Amigo Secreto</h1>
-        <img src="https://i.imgur.com/kG3PGsW.png" alt="Imagen amigo secreto" style="max-width: 280px" />
+        <img
+          src="img/amigo-secreto.5241a60e.png"
+          alt="Imagen amigo secreto"
+          style="max-width: 280px" />
       </div>
-
       <div class="container columns is-centered">
-        <div class="column is-half">
-          <!-- Caja principal -->
+        <div class="column is-two-thirds-desktop is-full-mobile">
           <div class="box">
-            <h2 class="subtitle is-4 has-text-weight-semibold">👥 Agregar Amigos</h2>
+            <h2 class="subtitle is-4 has-text-weight-semibold">
+              👥 Agregar Amigos
+            </h2>
 
             <div class="field has-addons">
               <div class="control is-expanded has-icons-left">
@@ -62,11 +61,13 @@
                 </span>
               </div>
               <div class="control">
-                <button class="button is-warning" @click="agregarAmigo">Añadir</button>
+                <button class="button is-warning" @click="agregarAmigo">
+                  Añadir
+                </button>
               </div>
             </div>
 
-            <div v-if="amigos.length" class="mt-4">
+            <div class="mt-4" v-if="amigos.length">
               <p class="has-text-weight-semibold mb-2">📋 Lista de amigos:</p>
               <ul>
                 <li v-for="(amigo, index) in amigos" :key="index">
@@ -76,32 +77,30 @@
             </div>
           </div>
 
-          <!-- Animación -->
-          <div class="has-text-centered my-5" v-if="sorteando">
-            <span class="loader"></span>
+          <div class="has-text-centered my-4" v-if="sorteando">
+            <span class="loader is-loading is-large"></span>
             <p class="mt-3 has-text-weight-semibold is-italic">
-              Realizando sorteo... ⏳
+              Realizando sorteo, espera un momento...
             </p>
           </div>
 
-          <!-- Resultado -->
-          <div class="notification is-primary" v-if="resultado && !sorteando">
+          <div class="box is-primary" v-if="resultado.length && !sorteando">
             <p class="title is-5">🎉 Resultados del sorteo:</p>
             <ul>
-              <li v-for="(destino, index) in resultado" :key="index">
-                {{ destino[0] }} ➡️ le regala a ➡️ <strong>{{ destino[1] }}</strong>
+              <li v-for="(ganador, index) in resultado" :key="index">
+                😎 ¡El Amigo Secreto es <strong>{{ ganador }}</strong
+                >!
               </li>
             </ul>
           </div>
 
-          <!-- Botón de sorteo -->
           <div class="has-text-centered mt-4">
             <button
               class="button is-success is-large"
               @click="sortearAmigo"
               :disabled="amigos.length < 2 || sorteando">
               <span v-if="!sorteando">Sortear Amigo Secreto</span>
-              <span v-else>Espere...</span>
+              <span v-else>Cargando...</span>
             </button>
           </div>
         </div>
@@ -109,65 +108,8 @@
     </section>
   </div>
 
-  <!-- Vue 3 CDN -->
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-  <!-- Lógica Vue -->
-  <script>
-    const { createApp } = Vue;
-
-    createApp({
-      data() {
-        return {
-          nuevoAmigo: "",
-          amigos: [],
-          resultado: [],
-          sorteando: false,
-        };
-      },
-      methods: {
-        agregarAmigo() {
-          const nombre = this.nuevoAmigo.trim();
-          if (!nombre) {
-            alert("Por favor escribe un nombre válido.");
-            return;
-          }
-          if (this.amigos.includes(nombre)) {
-            alert("Ese nombre ya fue ingresado.");
-            return;
-          }
-          this.amigos.push(nombre);
-          this.nuevoAmigo = "";
-          this.resultado = [];
-        },
-        sortearAmigo() {
-          this.sorteando = true;
-          this.resultado = [];
-
-          setTimeout(() => {
-            const participantes = [...this.amigos];
-            const receptores = [...this.amigos];
-            const asignaciones = [];
-
-            for (const giver of participantes) {
-              const posibles = receptores.filter((r) => r !== giver);
-              if (posibles.length === 0) {
-                alert("No se pudo completar el sorteo. Intenta nuevamente.");
-                this.resultado = [];
-                this.sorteando = false;
-                return;
-              }
-              const elegido = posibles[Math.floor(Math.random() * posibles.length)];
-              asignaciones.push([giver, elegido]);
-              receptores.splice(receptores.indexOf(elegido), 1);
-            }
-
-            this.resultado = asignaciones;
-            this.sorteando = false;
-          }, 2000); // Simula carga de 2 segundos
-        }
-      }
-    }).mount("#app");
+  <script src="js/main.js">
+    
   </script>
 </body>
 </html>
