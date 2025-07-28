@@ -1,24 +1,42 @@
-# amigosecreto
+# 🎁 Proyecto Amigo Secreto 🎉
 
-## Project setup
-```
-pnpm install
-```
+Una aplicación web desarrollada con **Vue.js 3** y estilizada con **Bulma CSS**, que permite registrar participantes y realizar el sorteo de un amigo secreto de manera simple, divertida y visualmente amigable.
 
-### Compiles and hot-reloads for development
-```
-pnpm run serve
-```
+---
 
-### Compiles and minifies for production
-```
-pnpm run build
-```
+## 🖼️ Vista previa
 
-### Lints and fixes files
-```
-pnpm run lint
-```
+![Demo de la App](./src/assets/amigo-secreto.png)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+---
+
+## 🧠 Características
+
+- 📋 Añadir nombres de amigos al sorteo
+- 🔀 Realizar el sorteo del amigo secreto sin repeticiones
+- 🧾 Visualización inmediata de los resultados
+- 🖌️ Interfaz atractiva y responsive con Bulma
+- ✅ Fácil de extender o personalizar
+
+---
+
+## 🚀 Tecnologías
+
+- [Vue.js 3](https://vuejs.org/)
+- [Bulma](https://bulma.io/)
+- [JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- HTML5 / CSS3
+
+---
+
+## 📦 Instalación
+
+```bash
+# Clona el repositorio
+git clone https://github.com/tu-usuario/amigo-secreto-vue.git
+
+# Entra al proyecto
+cd amigo-secreto-vue
+
+# Instala las dependencias
+npm install
