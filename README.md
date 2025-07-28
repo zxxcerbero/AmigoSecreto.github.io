@@ -16,7 +16,7 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 
 ## 🖼️ Vista Previa
 
-![Vista previa](img/amigo-secreto.png)
+![Vista previa(/img/captura1-mobile.jpg)
 
 ---
 
@@ -30,3 +30,5 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 ---
 
 ## 📂 Estructura de Archivos
+- index.html / Cuerpo del projecto
+- js/main.js / Funcionalidades del proyecto
