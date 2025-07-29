@@ -20,9 +20,6 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 
 ---
 
-## Vista Previa del projecto
-![vista previa](../index.html)
-
 
 ## 🛠️ Tecnologías Utilizadas
 
