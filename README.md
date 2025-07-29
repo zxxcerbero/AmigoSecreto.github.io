@@ -20,6 +20,10 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 
 ---
 
+## Vista Previa del projecto
+![vista previa](../
+
+
 ## 🛠️ Tecnologías Utilizadas
 
 - [Vue.js 3 (CDN)](https://unpkg.com/vue@3)
