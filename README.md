@@ -1,4 +1,4 @@
-# 🎁 Proyecto Amigo Secreto (Versión CDN)
+# 🎁 Proyecto Amigo Secreto
 
 Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos de **Amigo Secreto** usando solo HTML, CSS y JavaScript . No requiere instalación de dependencias ni entorno de desarrollo. Ideal para ejecutarse en navegadores locales o subir a servidores estáticos.
 
@@ -29,4 +29,4 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 - js/main.js / Funcionalidades del proyecto
 
 ## Visualizalo en:
-[Link text](https://website-name.com)
+https://zxxcerbero.github.io/MiAmigoSecreto/
