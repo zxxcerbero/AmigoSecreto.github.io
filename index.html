@@ -3,113 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amigo secreto</title>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    /* Custom loader styles for Bulma */
-    .loader {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: 3px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 3px solid #3498db; /* Blue color for the spinner */
-      animation: spin 1s linear infinite;
-    }
-
-    .loader.is-large {
-      width: 80px;
-      height: 80px;
-      border-width: 5px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+  <title>Amigo secreto - Vanilla</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="app">
-    <section class="section is-success is-mobile is-fullheight">
-      <div class="has-text-centered mb-6">
-        <h1 class="title is-2">🎁 Amigo Secreto</h1>
-        <img
-          src="img/amigo-secreto.5241a60e.png"
-          alt="Imagen amigo secreto"
-          style="max-width: 280px" />
-      </div>
-      <div class="container columns is-centered">
-        <div class="column is-two-thirds-desktop is-full-mobile">
-          <div class="box">
-            <h2 class="subtitle is-4 has-text-weight-semibold">
-              👥 Agregar Amigos
-            </h2>
-
-            <div class="field has-addons">
-              <div class="control is-expanded has-icons-left">
-                <input
-                  v-model="nuevoAmigo"
-                  class="input is-warning"
-                  type="text"
-                  placeholder="Nombre del amigo"
-                  @keyup.enter="agregarAmigo" />
-                <span class="icon is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-              </div>
-              <div class="control">
-                <button class="button is-warning" @click="agregarAmigo">
-                  Añadir
-                </button>
-              </div>
-            </div>
-
-            <div class="mt-4" v-if="amigos.length">
-              <p class="has-text-weight-semibold mb-2">📋 Lista de amigos:</p>
-              <ul>
-                <li v-for="(amigo, index) in amigos" :key="index">
-                  {{ index + 1 }}. {{ amigo }}
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="has-text-centered my-4" v-if="sorteando">
-            <span class="loader is-loading is-large"></span>
-            <p class="mt-3 has-text-weight-semibold is-italic">
-              Realizando sorteo, espera un momento...
-            </p>
-          </div>
-
-          <div class="box is-primary" v-if="resultado.length && !sorteando">
-            <p class="title is-5">🎉 Resultados del sorteo:</p>
-            <ul>
-              <li v-for="(ganador, index) in resultado" :key="index">
-                😎 ¡El Amigo Secreto es <strong>{{ ganador }}</strong
-                >!
-              </li>
-            </ul>
-          </div>
-
-          <div class="has-text-centered mt-4">
-            <button
-              class="button is-success is-large"
-              @click="sortearAmigo"
-              :disabled="amigos.length < 2 || sorteando">
-              <span v-if="!sorteando">Sortear Amigo Secreto</span>
-              <span v-else>Cargando...</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <script src="js/main.js">
+  <div id="app" class="contenedor">
+    <h1 class="title">🎁 Amigo Secreto</h1>
+    <img src="img/amigo-secreto.5241a60e.png" alt="Imagen amigo secreto" style="max-width: 280px; margin-bottom: 2rem;">
     
-  </script>
+    <div class="home__datos">
+      <h2 class="home__datos__titulo">👥 Agregar Amigos</h2>
+      <div class="home__datos__input">
+        <input id="nuevo-amigo-input" class="input" type="text" placeholder="Nombre del amigo">
+        <button id="agregar-amigo-btn" class="btn">Añadir</button>
+      </div>
+      <div id="lista-amigos-container" style="display: none;">
+        <p>📋 Lista de amigos:</p>
+        <ul id="lista-amigos">
+        </ul>
+      </div>
+    </div>
+
+    <div id="loader" class="loader-container" style="display: none;">
+      <div class="loader"></div>
+      <p>Realizando sorteo, espera un momento...</p>
+    </div>
+
+    <div id="resultado-container" class="box" style="display: none;">
+      <p class="title">🎉 Resultados del sorteo:</p>
+      <p id="resultado"></p>
+    </div>
+
+    <div>
+      <button id="sortear-btn" class="btn btn-primary">Sortear Amigo Secreto</button>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
 </body>
 </html>

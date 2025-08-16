@@ -1,0 +1,153 @@
+/* ==============================
+   ESTILO JARVIS
+   ============================== */
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --jarvis-blue: #00aaff;
+    --jarvis-blue-dark: #0d1a2e;
+    --jarvis-blue-light: #1fc8e4;
+    --jarvis-text-color: #f0f4f8;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--jarvis-blue-dark) url('../assets/3077188.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--jarvis-text-color);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.contenedor {
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  background: rgba(13, 26, 46, 0.5);
+  border: 1px solid var(--jarvis-blue);
+  border-radius: 16px;
+  box-shadow: 0 0 20px var(--jarvis-blue), inset 0 0 20px var(--jarvis-blue);
+}
+
+.title {
+    font-family: 'Krona One', sans-serif;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 1.5rem;
+    color: var(--jarvis-text-color);
+    text-shadow: 0 0 5px var(--jarvis-blue), 0 0 10px var(--jarvis-blue);
+}
+
+.home__datos {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 2rem;
+}
+
+.home__datos__titulo {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--jarvis-text-color);
+    text-shadow: 0 0 3px var(--jarvis-blue);
+}
+
+.home__datos__input {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--jarvis-blue);
+    color: var(--jarvis-text-color);
+    background-color: rgba(13, 26, 46, 0.8);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    box-shadow: 0 0 10px var(--jar-blue), inset 0 0 10px var(--jarvis-blue);
+}
+
+.input:focus {
+    border-color: var(--jarvis-blue-light);
+    box-shadow: 0 0 15px var(--jarvis-blue-light), inset 0 0 15px var(--jarvis-blue-light);
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid var(--jarvis-blue);
+    padding: 1rem 1.5rem;
+    color: var(--jarvis-text-color);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px var(--jarvis-blue);
+}
+
+.btn:hover {
+    background-color: var(--jarvis-blue);
+    color: var(--jarvis-blue-dark);
+    box-shadow: 0 0 20px var(--jarvis-blue);
+}
+
+#lista-amigos {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.lista {
+    background-color: rgba(13, 26, 46, 0.8);
+    color: var(--jarvis-text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--jarvis-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 0 5px var(--jarvis-blue);
+}
+
+.btn.btn-small {
+    padding: 0.5rem 1rem;
+}
+
+.btn.btn-small img {
+    width: 15px;
+}
+
+#sortear-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.box {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    margin-top: 2rem;
+}

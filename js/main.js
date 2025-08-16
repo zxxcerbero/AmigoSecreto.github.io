@@ -1,46 +1,81 @@
-const { createApp } = Vue;
+let amigos = [];
+const listaAmigos = document.getElementById('lista-amigos');
+const listaAmigosContainer = document.getElementById('lista-amigos-container');
+const resultadoContainer = document.getElementById('resultado-container');
 
-    createApp({
-      data() {
-        return {
-          nuevoAmigo: "",
-          amigos: [],
-          resultado: [],
-          sorteando: false,
-        };
-      },
-      methods: {
-        agregarAmigo() {
-          const nombre = this.nuevoAmigo.trim();
-          if (!nombre) {
-            alert("Por favor, escribe un nombre.");
-            return;
-          }
-          if (this.amigos.includes(nombre)) {
-            alert("Este nombre ya fue ingresado.");
-            return;
-          }
-          this.amigos.push(nombre);
-          this.nuevoAmigo = "";
-          this.resultado = []; // Limpia resultado anterior
-        },
+const renderAmigos = () => {
+  listaAmigos.innerHTML = '';
+  amigos.forEach((amigo, index) => {
+    const li = document.createElement('li');
+    li.setAttribute('class', 'lista');
+    li.innerHTML = `${index + 1}. ${amigo}<button onclick="borrarAmigo(${index})" class="btn btn-small"><img src="assets/borrar.png"></button>`;
+    listaAmigos.appendChild(li);
+  });
+  listaAmigosContainer.style.display = amigos.length > 0 ? 'block' : 'none';
+};
 
-        async sortearAmigo() {
-          if (this.amigos.length < 2) return;
+function borrarAmigo(index) {
+  amigos.splice(index, 1);
+  renderAmigos();
+}
 
-          this.sorteando = true;
-          this.resultado = [];
+document.addEventListener('DOMContentLoaded', () => {
+  const nuevoAmigoInput = document.getElementById('nuevo-amigo-input');
+  const agregarAmigoBtn = document.getElementById('agregar-amigo-btn');
+  const sortearBtn = document.getElementById('sortear-btn');
+  const loader = document.getElementById('loader');
+  const resultado = document.getElementById('resultado');
 
-          await new Promise((resolve) => setTimeout(resolve, 2000)); // Simula animación de sorteo
+  listaAmigosContainer.style.display = 'none';
 
-          // Lógica para seleccionar un único ganador aleatorio
-          const participantes = this.amigos;
-          const indiceGanador = Math.floor(Math.random() * participantes.length);
-          const ganador = participantes[indiceGanador];
+  const agregarAmigo = () => {
+    const nombre = nuevoAmigoInput.value.trim();
+    const regex = /^[a-zA-Z0-9\s]*$/;
+    if (!nombre) {
+      alert("Por favor, escribe un nombre.");
+      return;
+    }
+    if (!regex.test(nombre)) {
+      alert("El nombre solo puede contener letras, números y espacios.");
+      return;
+    }
+    if (amigos.includes(nombre)) {
+      alert("Este nombre ya fue ingresado.");
+      return;
+    }
+    amigos.push(nombre);
+    nuevoAmigoInput.value = '';
+    resultadoContainer.style.display = 'none';
+    renderAmigos();
+  };
 
-          // Guardamos el ganador en el array de resultados
-          this.resultado = [ganador];
-          this.sorteando = false;
-        },
-      },
-    }).mount("#app");
+  const sortearAmigo = async () => {
+    if (amigos.length < 2) {
+        alert("Necesitas al menos 2 amigos para sortear.");
+        return;
+    }
+
+    loader.style.display = 'block';
+    resultadoContainer.style.display = 'none';
+    sortearBtn.disabled = true;
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    const indiceGanador = Math.floor(Math.random() * amigos.length);
+    const ganador = amigos[indiceGanador];
+
+    resultado.innerHTML = `😎 ¡El Amigo Secreto es <strong>${ganador}</strong>!`;
+    
+    loader.style.display = 'none';
+    resultadoContainer.style.display = 'block';
+    sortearBtn.disabled = false;
+  };
+
+  agregarAmigoBtn.addEventListener('click', agregarAmigo);
+  nuevoAmigoInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      agregarAmigo();
+    }
+  });
+  sortearBtn.addEventListener('click', sortearAmigo);
+});
