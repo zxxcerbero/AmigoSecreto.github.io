@@ -29,6 +29,4 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 - js/main.js / Funcionalidades del proyecto
 
 ## Visualizalo en:
-[Link text](https://zxxcerbero.github.io/MiAmigoSecreto/)
-
-https://zxxcerbero.github.io/MiAmigoSecreto/
+[Link text](https://website-name.com)
