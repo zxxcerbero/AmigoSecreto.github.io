@@ -12,11 +12,6 @@ Este proyecto es una aplicación ligera y dinámica que permite realizar sorteos
 - ✅ Prohibicion de caracteres Especiales
 - ✅ Rápido de ejecutar, sin `npm`, sin bundlers, sin complicaciones.
 
----
-
-## 🖼️ Vista Previa
-
-![Vista previa](./img/captura1-mobile.jpg)
 
 ---
 
